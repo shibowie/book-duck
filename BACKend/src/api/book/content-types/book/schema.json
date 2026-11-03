@@ -36,6 +36,18 @@
         "images",
         "files"
       ]
+    },
+    "ratings": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::rating.rating",
+      "mappedBy": "book"
+    },
+    "book_list_items": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::book-list-item.book-list-item",
+      "mappedBy": "book"
     }
   }
 }

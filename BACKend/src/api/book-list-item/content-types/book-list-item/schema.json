@@ -1,0 +1,27 @@
+{
+  "kind": "collectionType",
+  "collectionName": "book_list_items",
+  "info": {
+    "singularName": "book-list-item",
+    "pluralName": "book-list-items",
+    "displayName": "BookListItem"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "user": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "plugin::users-permissions.user",
+      "inversedBy": "book_list_items"
+    },
+    "book": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::book.book",
+      "inversedBy": "book_list_items"
+    }
+  }
+}
