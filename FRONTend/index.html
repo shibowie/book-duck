@@ -1,0 +1,76 @@
+
+<!DOCTYPE html>
+<html lang="sv">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script type="module" src="./script.js"></script>
+  <title>Book Duck</title>
+  <link rel="stylesheet" href="./style.css">
+</head>
+
+<body>
+  <header class="site-header">
+    <a href="./index.html" class="logo">BOOK DUCK</a>
+    <form class="search-form" role="search">
+      <input
+        type="search"
+        placeholder="Search title, author or genre..."
+        aria-label="Sök efter titel, författare eller genre"
+      >
+      <button type="submit" aria-label="Sök">⌕</button>
+    </form>
+
+    <nav class="main-nav" aria-label="Huvudmeny">
+      <a href="#books" class="nav-link">Books</a>
+      <a href="#" class="nav-link">Log in</a>
+      <a href="#" class="favourites-link" aria-label="Favoriter">♡</a>
+    </nav>
+  </header>
+
+  <main>
+    <section class="welcome-section">
+      <h1>Welcome to Book Duck</h1>
+      <p class="welcome-tagline">
+        <span aria-hidden="true">˗ˏˋ 🕮</span>
+        <span>Your online library</span>
+        <span aria-hidden="true">✶ ˎˊ-</span>
+      </p>
+    </section>
+    
+    <section class="books-section" id="books" aria-labelledby="books-heading">
+      <h2 id="books-heading" class="visually-hidden">All books</h2>
+      <div class="carousel">
+        <button
+          type="button"
+          class="carousel-button carousel-button--prev"
+          id="prev-book"
+          aria-label="Previous book"
+        >
+          &#10094;
+        </button>
+        <div id="book-list" class="book-list">
+          <p>Loading books...</p>
+        </div>
+        <button
+          type="button"
+          class="carousel-button carousel-button--next"
+          id="next-book"
+          aria-label="Next book"
+        >
+          &#10095;
+        </button>
+      </div>
+    </section>
+
+    <section class="quote-section" aria-label="Citat om läsning">
+      <blockquote>
+        “The only thing you absolutely have to know,
+        is the location of the library.”
+      </blockquote>
+      <p class="quote-author">— Albert Einstein</p>
+    </section>
+
+  </main>
+</body>
+</html>
