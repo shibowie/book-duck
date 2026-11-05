@@ -1,4 +1,6 @@
 import { getBooks } from "./js/books.js";
+import { getSettings } from "./js/settings.js";
+import { themes } from "./js/themes.js";
 
 const bookList = document.querySelector("#book-list");
 const prevButton = document.querySelector("#prev-book");
@@ -8,84 +10,105 @@ let books = [];
 let activeIndex = 0;
 
 async function displayBooks() {
-    books = await getBooks();
+  const settings = await getSettings();
 
-    bookList.innerHTML = "";
+  const activeTheme =
+    settings?.theme && themes[settings.theme]
+      ? settings.theme
+      : "classic";
 
-    if (books.length === 0) {
-        bookList.innerHTML = "<p>No books could be loaded.</p>";
-        return;
-    }
+  books = await getBooks();
 
-    books.forEach((book, index) => {
-        const bookCard = document.createElement("article");
-        bookCard.classList.add("book-card");
+  bookList.innerHTML = "";
 
-        const coverUrl = book.coverImage?.url
-            ? `http://localhost:1337${book.coverImage.url}`
-            : "";
+  if (books.length === 0) {
+    bookList.innerHTML = "<p>No books could be loaded.</p>";
+    return;
+  }
 
-        bookCard.innerHTML = `
-            <div class="book-cover">
-                ${
-                    coverUrl
-                        ? `<img src="${coverUrl}" alt="Cover of ${book.title}">`
-                        : "<div class='no-cover'>No cover available</div>"
-                }
-            </div>
+  books.forEach((book, index) => {
+    const bookCard = document.createElement("article");
+    bookCard.classList.add("book-card");
 
-            <div class="book-info">
-                <h3>${book.title}</h3>
+    const coverUrl = book.coverImage?.url
+      ? `http://localhost:1337${book.coverImage.url}`
+      : "";
+    
+    bookCard.innerHTML = `
+      <div class="book-cover">
+        ${
+          coverUrl
+            ? `<img src="${coverUrl}" alt="Cover of ${book.title}">`
+            : "<div class='no-cover'>No cover available</div>"
+        }
+      </div>
 
-                <p class="book-author">
-                    By: ${book.author}
-                </p>
+      <div class="book-info">
+        <h3>${book.title}</h3>
 
-                <p class="book-description">
-                    A book waiting to be discovered. More details coming soon.
-                </p>
-            </div>
-        `;
+        <p class="book-author">
+          By: ${book.author}
+        </p>
 
-        bookCard.dataset.index = index;
-        bookList.appendChild(bookCard);
-    });
+        <p class="book-meta">
+          First release date: ${book.publicationDate
+            ? book.publicationDate.slice(0, 4)
+            : "Unknown"}
+        </p>
+            
+        <p class="book-meta">
+          Pages: ${book.pageCount ?? "Unknown"}
+        </p>
 
-    updateCarousel();
+        <p class="book-description">
+          ${book.description || "No description available."}
+        </p>
+      </div>
+    `;
+
+    const genreColor = themes[activeTheme].genres[book.genre];
+
+    bookCard.style.backgroundColor = genreColor || "#F5C9B5";
+
+    bookCard.dataset.index = index;
+    bookList.appendChild(bookCard);
+  });
+
+  updateCarousel();
 }
 
 function updateCarousel() {
-    const cards = bookList.querySelectorAll(".book-card");
+  const cards = bookList.querySelectorAll(".book-card");
 
-    cards.forEach((card, index) => {
-        let offset = index - activeIndex;
+  cards.forEach((card, index) => {
+    let offset = index - activeIndex;
 
-        // Place cards on the shortest side of the carousel.
-        if (offset > books.length / 2) {
-            offset -= books.length;
-        } else if (offset < -books.length / 2) {
-            offset += books.length;
-        }
+    // Place cards on the shortest side of the carousel.
+    if (offset > books.length / 2) {
+      offset -= books.length;
+    } else if (offset < -books.length / 2) {
+      offset += books.length;
+    }
 
-        card.style.setProperty("--offset", offset);
+    card.style.setProperty("--offset", offset);
 
-        card.classList.toggle("is-active", offset === 0);
+    card.classList.toggle("is-active", offset === 0);
 
-        card.setAttribute(
-            "aria-hidden",
-            Math.abs(offset) > 2 ? "true" : "false"
-        );
-    });
+    card.setAttribute(
+      "aria-hidden",
+      Math.abs(offset) > 2 ? "true" : "false"
+    );
+  });
 }
 
 function showNextBook() {
-    activeIndex = (activeIndex + 1) % books.length;
-    updateCarousel();
+  activeIndex = (activeIndex + 1) % books.length;
+  updateCarousel();
 }
 
 function showPreviousBook() {
-    activeIndex = (activeIndex - 1 + books.length) % books.length;
-    updateCarousel();
+  activeIndex = (activeIndex - 1 + books.length) % books.length;
+  updateCarousel();
 }
 
 nextButton.addEventListener("click", showNextBook);

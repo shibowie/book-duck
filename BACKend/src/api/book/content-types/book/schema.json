@@ -48,6 +48,29 @@
       "relation": "oneToMany",
       "target": "api::book-list-item.book-list-item",
       "mappedBy": "book"
+    },
+    "description": {
+      "type": "string",
+      "default": "🕮 This is a book about something ☕︎",
+      "maxLength": 250
+    },
+    "genre": {
+      "type": "enumeration",
+      "required": true,
+      "enum": [
+        "Thriller / Suspense",
+        "Drama",
+        "Childrens",
+        "Fantasy",
+        "Science Fiction",
+        "True Crime",
+        "Romance",
+        "Autobiography",
+        "History",
+        "Horror",
+        "Young Adult",
+        "Mystery / Crime"
+      ]
     }
   }
 }

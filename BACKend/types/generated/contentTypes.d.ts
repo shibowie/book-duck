@@ -497,6 +497,28 @@ export interface ApiBookBook extends Struct.CollectionTypeSchema {
     createdAt: Schema.Attribute.DateTime;
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
+    description: Schema.Attribute.String &
+      Schema.Attribute.SetMinMaxLength<{
+        maxLength: 250;
+      }> &
+      Schema.Attribute.DefaultTo<'\uD83D\uDD6E This is a book about something \u2615\uFE0E'>;
+    genre: Schema.Attribute.Enumeration<
+      [
+        'Thriller / Suspense',
+        'Drama',
+        'Childrens',
+        'Fantasy',
+        'Science Fiction',
+        'True Crime',
+        'Romance',
+        'Autobiography',
+        'History',
+        'Horror',
+        'Young Adult',
+        'Mystery / Crime',
+      ]
+    > &
+      Schema.Attribute.Required;
     locale: Schema.Attribute.String & Schema.Attribute.Private;
     localizations: Schema.Attribute.Relation<'oneToMany', 'api::book.book'> &
       Schema.Attribute.Private;
