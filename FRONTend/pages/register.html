@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Create Account | Book Duck</title>
+  
+  <script type="module" src="../js/register.js"></script>
+  <link rel="stylesheet" href="../style.css">
+</head>
+<body>
+  <header class="site-header">
+      <a href="../index.html" class="logo">BOOK DUCK</a>
+  </header>
+
+  <main>
+    <section class="auth-section">
+      <h1>Join Book Duck!</h1>
+      <p>Create an account to save and rate your favourite books.</p>
+
+      <form id="register-form" class="auth-form">
+        <div class="form-group">
+          <label for="username">Username</label>
+          <input
+            type="text"
+            id="username"
+            name="username"
+            placeholder="Choose a username"
+            required
+          >
+        </div>
+
+        <div class="form-group">
+          <label for="email">Email</label>
+          <input
+            type="email"
+            id="email"
+            name="email"
+            placeholder="Enter your email"
+            required
+          >
+        </div>
+
+        <div class="form-group">
+          <label for="password">Password</label>
+          <input
+            type="password"
+            id="password"
+            name="password"
+            placeholder="Choose a password"
+            required
+          >
+        </div>
+
+        <div class="form-group">
+          <label for="confirm-password">Confirm password</label>
+          <input
+            type="password"
+            id="confirm-password"
+            name="confirm-password"
+            placeholder="Enter your password again"
+            required
+          >
+        </div>
+
+        <p id="register-message" role="alert"></p>
+
+        <button type="submit">Create Account</button>
+      </form>
+
+      <p>
+        Already have an account?
+        <a href="./login.html">Log in here</a>
+      </p>
+    </section>
+  </main>
+</body>
+</html>

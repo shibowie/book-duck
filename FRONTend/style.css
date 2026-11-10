@@ -324,6 +324,75 @@ input {
 
 
 /* =========================
+  Authentication
+========================= */
+
+.auth-section {
+  width: min(420px, 90%);
+  margin: 5rem auto;
+  text-align: center;
+}
+
+.auth-section h1 {
+  margin-bottom: 0.5rem;
+}
+
+.auth-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+  margin: 2rem 0;
+  text-align: left;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.form-group input {
+  padding: 0.85rem 1rem;
+  border: 1px solid #333;
+  border-radius: 8px;
+  background-color: white;
+}
+
+.auth-form button {
+  padding: 0.85rem;
+  border: 1px solid #333;
+  border-radius: 8px;
+  background-color: #f5c9b5;
+  cursor: pointer;
+  font-weight: 600;
+}
+
+.auth-form button:hover {
+  background-color: #eab49d;
+}
+
+#login-message {
+  color: #b42318;
+  font-size: 0.9rem;
+}
+
+.auth-section a {
+  text-decoration: underline;
+}
+
+
+/* =========================
+  Registration
+========================= */
+
+#register-message {
+  color: #b42318;
+  font-size: 0.9rem;
+}
+
+
+
+/* =========================
   Anpassning för mindre skärmar
 ========================= */
 
